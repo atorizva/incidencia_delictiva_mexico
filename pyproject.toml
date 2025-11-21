@@ -1,7 +1,7 @@
 [project]
-name = "python-project-template"
+name = "etl"
 version = "0.1.0"
-description = "Add your description here"
+description = "ETL para visualización y análisis de incidiencia delictiva en México."
 authors = [
     { name = "atorizva" }
 ]
