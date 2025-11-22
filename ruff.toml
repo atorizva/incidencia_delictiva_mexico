@@ -41,6 +41,7 @@ select = [
 ignore = [
     "D204", # Blank line after class def
     "D212", # Start docs next to quotes
+    "D200", # Single sentence docstring should fit on one line
 ]
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
