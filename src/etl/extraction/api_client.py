@@ -5,6 +5,11 @@ import os
 import requests
 from dotenv import load_dotenv
 
+# Dict que relaciona datos de la API con su código
+API_DATA_CODES: dict[str, int] = {
+    "public_space_robbery_or_assault_crime_rate": 6200028409
+}
+
 
 class ApiClient:
     """Cliente de conexión a API de INEGI.
@@ -34,8 +39,11 @@ class ApiClient:
         """
         Obtiene la tasa de robos o asaltos en via pública por cada 100k habitantes.
         """
-        code = 6200028409
-        return self._session.get(self._build_url(code))
+        return self._session.get(
+            self._build_url(
+                API_DATA_CODES["public_space_robbery_or_assault_crime_rate"]
+            )
+        )
 
 
 if __name__ == "__main__":
