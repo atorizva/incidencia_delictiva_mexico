@@ -29,5 +29,21 @@ jobs:
       - name: Sync project
         run: uv sync --locked --all-extras --dev
 
-      - name: Run Tests
+      - name: Run tests
         run: uv run pytest
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v5
+        with:
+          name: pytest-results
+          path: |
+            test_report.xml
+            coverage.xml
+
+      - name: Test report
+        uses: dorny/test-reporter@v2
+        if: ${{ !cancelled() }}
+        with:
+          name: Pytest tests results
+          path: test_report.xml
+          reporter: java-junit
