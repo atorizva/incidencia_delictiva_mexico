@@ -38,7 +38,6 @@ jobs:
           name: pytest-results
           path: |
             test_report.xml
-            coverage.xml
 
       - name: Test report
         uses: dorny/test-reporter@v2
