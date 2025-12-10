@@ -46,3 +46,31 @@ jobs:
           name: Pytest tests results
           path: test_report.xml
           reporter: java-junit
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    if: startsWith(github.ref, 'refs/tags/')
+    env:
+      dist_artifacts_name: dist
+      dist_artifacts_dir: dist
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install uv
+        uses: astral-setup-uv@v7
+        with:
+          enable-cache ${{ !env.ACT }}
+
+      - name: Build project
+        run: uv build
+
+      - name: Upload distribution artifacts
+        uses: actions/upload-artifact@v5
+        with:
+          name: ${{ env.dist_artifacts_name }}
+          path: ${{ format('{0}/**', env.dist_artifacts_dir) }}
+          if-no-files-found: error
+          retention-days: 2
+
