@@ -74,3 +74,20 @@ jobs:
           if-no-files-found: error
           retention-days: 2
 
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    needs: build
+    steps:
+      - name: Download dist artifacts
+        uses: actions/download-artifact@v6
+        with:
+          name: dist
+          path: dist    
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/**
