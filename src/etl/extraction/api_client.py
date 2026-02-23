@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 # Dict que relaciona datos de la API con su código
 API_DATA_CODES: dict[str, int] = {
-    "public_space_robbery_or_assault_crime_rate_data": 6200028409
+    "crime_rate_per_hundred_thousand_citizens": 6200028526
 }
 
 
@@ -57,6 +57,6 @@ if __name__ == "__main__":
     # Petición
     api = ApiClient()
     response = api.get_data(
-        API_DATA_CODES["public_space_robbery_or_assault_crime_rate_data"]
+        API_DATA_CODES["crime_rate_per_hundred_thousand_citizens"]
     )
     pprint(response.json())
