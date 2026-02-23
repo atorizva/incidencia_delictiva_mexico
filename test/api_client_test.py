@@ -31,6 +31,7 @@ class TestApiClient:
 
     def test_incorrect_client_init(self) -> None:
         """Valida que no se pueda inicializar el cliente sin API_TOKEN."""
+        os.environ.pop("API_TOKEN")
         with pytest.raises(ValueError, match=r"API_TOKEN no encontrada."):
             ApiClient()
 
